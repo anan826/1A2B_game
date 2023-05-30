@@ -8,41 +8,37 @@ int main()
 	srand(time(NULL));
 	int r;
 	int arr[4] = {};
+	// Generating Random Number.
 	for (int i = 0; i <= 3; i++)
 	{
 		r = rand() % (10) + 1;
 		arr[i] = r;
-		//		cout << arr[i];
+		cout << arr[i];
 	}
-	//	cout <<"\n";
-	int cnt = 0;
+		cout <<"\n";
 	int maxCount = 0;
 	while (1)
 	{
+		int cnt=0;
 		int A = 0, B = 0;
+		//	Key in Detect
 		char n;
-		int limit = 0;
+		int num;
+		int limit = 0;	//	Word's Maximum length
 		int input[4] = {};
 		int quit[4] = {};
-		int num;
-		cout << "Enter 4 number：";
+		cout << "Enter 4 number�G";
 		if (maxCount == 10)
 		{
 			cout << "\n";
-			cout << "Enter 'quit' for give up. . .\n";
+			cout << "Enter 'quit' to give up. . .\n";
 		}
+//		char x[4]={};
 		while (cin.get(n))
 		{
-
 			if (limit >= 4)
 			{
 				break;
-			}
-			if (limit < 4)
-			{
-				cout << "請重新輸入";
-				int input[4] = {};
-				continue;
 			}
 			quit[limit] = n;
 			num = n - 48;
@@ -55,7 +51,7 @@ int main()
 			if (quit[0] == 'q' && quit[1] == 'u' && quit[2] == 'i' && quit[3] == 't')
 			{
 				cout << "You lose !"
-						"the answer is：";
+						"the answer is�G";
 				for (int i = 0; i < 4; i++)
 				{
 					cout << arr[i];
@@ -89,10 +85,15 @@ int main()
 				}
 			}
 		}
-		if (input[0] == arr[0] && input[1] == arr[1] && input[2] == arr[2] && input[3] == arr[3])
-		{
+		int finalcheck=0;
+		for(int i=0;i<4;i++){
+			if(input[i]==arr[i]){
+				finalcheck++;
+			}
+		}
+		if(finalcheck==4){
 			cout << "Correct ! !\n";
-			cout << "The answer is：";
+			cout << "The answer is�G";
 			for (int i = 0; i < 4; i++)
 			{
 				cout << arr[i];
