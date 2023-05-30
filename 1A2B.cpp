@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cstring>
+#include <limits>
 using namespace std;
 int main()
 {
@@ -15,35 +16,70 @@ int main()
 		arr[i] = r;
 		cout << arr[i];
 	}
-		cout <<"\n";
+	cout << "\n";
 	int maxCount = 0;
 	while (1)
 	{
-		int cnt=0;
+		int cnt = 0;
 		int A = 0, B = 0;
 		//	Key in Detect
 		char n;
 		int num;
-		int limit = 0;	//	Word's Maximum length
+		int limit = 0; //	Word's Maximum length
 		int input[4] = {};
 		int quit[4] = {};
 		cout << "Enter 4 number¡G";
 		if (maxCount == 10)
 		{
 			cout << "\n";
-			cout << "Enter 'quit' to give up. . .\n";
+			cout << "Enter 'Ctrl + C' to give up. . .\n";
 		}
-//		char x[4]={};
+		//		char x[4]={};
 		while (cin.get(n))
 		{
-			if (limit >= 4)
+			if (n == '\n')
 			{
+				if (limit != 4)
+				{
+					cout << "----------------\n";
+					cout << "|Invalid input |\n";
+					cout << "----------------\n";
+					cout << "Enter exactly 4 numbers¡G";
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					limit = 0;
+					continue;
+				}
 				break;
 			}
-			quit[limit] = n;
-			num = n - 48;
-			input[limit] = num;
-			limit++;
+
+			if (limit >= 4)
+			{
+				cout << "----------------\n";
+				cout << "|Invalid input |\n";
+				cout << "----------------\n";
+				cout << "Enter exactly 4 numbers¡G";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				limit = 0;
+				continue;
+			}
+
+			if (n >= '0' && n <= '9')
+			{
+				quit[limit] = n;
+				num = n - '0';
+				input[limit] = num;
+				limit++;
+			}
+			else
+			{
+				cout << "----------------\n";
+				cout << "|Invalid input |\n";
+				cout << "----------------\n";
+				cout << "Enter exactly 4 numbers¡G";
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				limit = 0;
+				continue;
+			}
 		}
 		maxCount++;
 		if (maxCount >= 10)
@@ -85,13 +121,16 @@ int main()
 				}
 			}
 		}
-		int finalcheck=0;
-		for(int i=0;i<4;i++){
-			if(input[i]==arr[i]){
+		int finalcheck = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			if (input[i] == arr[i])
+			{
 				finalcheck++;
 			}
 		}
-		if(finalcheck==4){
+		if (finalcheck == 4)
+		{
 			cout << "Correct ! !\n";
 			cout << "The answer is¡G";
 			for (int i = 0; i < 4; i++)
